@@ -1,0 +1,10 @@
+.start_page_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url(/src/assets/img/exa-logo-white.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
