@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     language: 'pl',
+    themeMode: '',
     serial: 'CLK01-999-99-98',
     // serial: 'CLK01-024-22-24',
 }
@@ -10,6 +11,10 @@ export const actionsSlice = createSlice({
     reducers: {
         changeLanguage: (state, actions) => {
             state.language = actions.payload
+        },
+        changeThemeMode: (state, actions) => {
+            console.log(actions)
+            state.themeMode = actions.payload
         },
         setSerialOfMachine: (state, actions) => {
             state.serial = actions.payload
@@ -47,6 +52,7 @@ export const {
     changeQRCodeMode, 
     changeMobileAppMode, 
     changeEmployeeMode,
-    changePreAuthorizationTerminal
+    changePreAuthorizationTerminal,
+    changeThemeMode
 } = actionsSlice.actions;
 export default actionsSlice.reducer;

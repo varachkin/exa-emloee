@@ -7,6 +7,7 @@ import AppRouter from "./AppRouter";
 import Button from "@mui/material/Button";
 
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import {Swicher} from "./components/Swicher";
 
 const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -42,10 +43,7 @@ export default function App(props) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Provider store={store}>
-          {/* Button to toggle the theme */}
-          <Button onClick={toggleThemeMode}>
-            Toggle to {mode === 'dark' ? 'light' : 'dark'} mode
-          </Button>
+          <Swicher onClick={toggleThemeMode} mode={mode}/>
           <AppRouter {...props} />
         </Provider>
       </ThemeProvider>

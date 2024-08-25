@@ -3,12 +3,11 @@ import { LoginForm } from "../components/LoginForm";
 
 
 export default function StartPage() {
-    const { language } = useSelector(state => state.actionReducer)
-
-
+    const { language, themeMode } = useSelector(state => state.actionReducer)
+console.log(themeMode)
     return (
         <div
-            className="start_page_container"
+            className={`start_page_container ${themeMode}`}
         >
             <LoginForm />
         </div>

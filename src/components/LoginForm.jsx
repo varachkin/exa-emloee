@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
@@ -7,18 +7,18 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormHelperText from '@mui/material/FormHelperText';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button, CircularProgress, Paper, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom/dist';
-import { login } from '../API';
-import { locales } from '../locales';
+import {Button, CircularProgress, Paper, Typography} from '@mui/material';
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom/dist';
+import {login} from '../API';
+import {locales} from '../locales';
 
 export const LoginForm = () => {
-    const { language } = useSelector(state => state.actionReducer)
+    const {language} = useSelector(state => state.actionReducer)
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('')
@@ -38,7 +38,7 @@ export const LoginForm = () => {
             password: /[\W_]/g,
         }
         if (!regExps[event.target.id].test(event.target.value)) {
-            setIsError(prev => ({ ...prev, [event.target.id]: true }))
+            setIsError(prev => ({...prev, [event.target.id]: true}))
         }
     }
 
@@ -46,8 +46,8 @@ export const LoginForm = () => {
         if (errorMessage) {
             setErrorMessage('')
         }
-        setIsError(prev => ({ ...prev, [event.target.id]: false }))
-        setCredentials(prevCreds => ({ ...prevCreds, [event.target.id]: event.target.value }))
+        setIsError(prev => ({...prev, [event.target.id]: false}))
+        setCredentials(prevCreds => ({...prevCreds, [event.target.id]: event.target.value}))
     }
 
     const handleClickShowPassword = () => {
@@ -82,23 +82,26 @@ export const LoginForm = () => {
         <Paper
             className="form"
             elevation={6}
+            sx={{
+                // background: 'rgba(54,54,54,0.97)'
+            }}
         >
             <Typography component={'h1'} className='title'>{locales[language].FORM_PAGE.TITLE}</Typography>
-            <FormControl variant="outlined" sx={{ width: '100%' }} className='input' >
+            <FormControl variant="outlined" sx={{width: '100%'}} className='input'>
                 <TextField
                     id="email"
                     label={locales[language].FORM_PAGE.EMAIL}
                     variant="outlined"
                     size='small'
-                   
+
                     error={isError.email}
                     onChange={handleChangeInput}
                     onBlur={handleValidate}
                     value={credentials.email}
-                // sx={{
-                //     input: { color: '#ffffff' },
-                //     label: { color: '#a3a3a3' },
-                // }}
+                    // sx={{
+                    //     input: { color: '#ffffff' },
+                    //     label: { color: '#a3a3a3' },
+                    // }}
                 />
             </FormControl>
             <FormControl
@@ -116,7 +119,8 @@ export const LoginForm = () => {
                 // }}
                 className='input'
             >
-                <InputLabel error={isError.password} htmlFor="outlined-adornment-password" size='small'>{locales[language].FORM_PAGE.PASSWORD}</InputLabel>
+                <InputLabel error={isError.password} htmlFor="outlined-adornment-password"
+                            size='small'>{locales[language].FORM_PAGE.PASSWORD}</InputLabel>
                 <OutlinedInput
                     error={isError.password}
                     onChange={handleChangeInput}
@@ -132,7 +136,7 @@ export const LoginForm = () => {
                                 onMouseDown={handleMouseDownPassword}
                                 edge="end"
                             >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                {showPassword ? <VisibilityOffIcon/> : <VisibilityIcon/>}
                             </IconButton>
                         </InputAdornment>
                     }
@@ -145,7 +149,11 @@ export const LoginForm = () => {
                 disabled={isLoading}
                 sx={{minWidth: '30%'}}
             >
-                {isLoading ? <CircularProgress color="secondary" size={24} /> : locales[language].FORM_PAGE.SIGN_IN}
+                {
+                    isLoading ?
+                        <CircularProgress color="secondary" size={24.5}/> :
+                        locales[language].FORM_PAGE.SIGN_IN
+                }
             </Button>
             <div className='subtitle'>{errorMessage}</div>
         </Paper>

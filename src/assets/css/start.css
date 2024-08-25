@@ -3,8 +3,16 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url(/src/assets/img/exa-logo-white.png);
-    background-position: center center;
+
+    background-position: center 20%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 50%;
+    /*background-blend-mode: ;*/
+}
+.light{
+    background-image: url(/src/assets/img/exa-logo-light.png);
+}
+
+.dark{
+    background-image: url(/src/assets/img/exa-logo-dark.png);
 }
