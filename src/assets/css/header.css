@@ -1,0 +1,11 @@
+.header_wrapper{
+    /* min-height: 8vh; */
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    max-height: 10vh;
+    max-width: 30vw;
+    padding: 2vh;
+}

@@ -43,8 +43,8 @@ export default function App(props) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Provider store={store}>
-          <Swicher onClick={toggleThemeMode} mode={mode}/>
-          <AppRouter {...props} />
+        
+          <AppRouter {...props} toggleThemeMode={toggleThemeMode} mode={mode}/>
         </Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>

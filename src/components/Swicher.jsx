@@ -1,22 +1,22 @@
-import {useDispatch, useSelector} from "react-redux";
-import {changeThemeMode} from "../features/actions/actionSlice";
-import {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeThemeMode } from "../features/actions/actionSlice";
+import { useEffect } from "react";
 
-export const Swicher = ({onClick, mode}) => {
+export const Swicher = ({ onClick, mode }) => {
     const dispatch = useDispatch();
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(changeThemeMode(mode))
     }, [mode])
+
     return (
-        <div className="wrapper_toggle">
-            <div className="toggle">
-                <input className="toggle-input" type="checkbox" onClick={onClick}/>
-                <div className="toggle-bg"></div>
-                <div className="toggle-switch">
-                    <div className="toggle-switch-figure"></div>
-                    <div className="toggle-switch-figureAlt"></div>
-                </div>
+        <div className="container">
+            <div className="switch">
+                <label htmlFor="toggle">
+                    <input id="toggle" className="toggle-switch" type="checkbox" onClick={onClick}/>
+                        <div className="sun-moon"><div className="dots"></div></div>
+                        <div className="background"><div className="stars1"></div><div className="stars2"></div></div>
+                </label>
             </div>
         </div>
     )
