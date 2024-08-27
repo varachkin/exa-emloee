@@ -6,9 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import CircleIcon from '@mui/icons-material/Circle';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
-function createData(status, name, calories, fat, carbs) {
-  return { status, name, calories, fat, carbs };
+function createData(status, name, checkIn, checkOut, hours) {
+  return { status, name, checkIn, checkOut, hours };
 }
 
 const rows = [
@@ -26,10 +28,10 @@ export default function BasicTable() {
         <TableHead>
           <TableRow>
           <TableCell>Status</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Check in</TableCell>
-            <TableCell align="right">Check out</TableCell>
-            <TableCell align="right">Hours</TableCell>
+            <TableCell>Imię Nazwisko</TableCell>
+            <TableCell align="right">Zameldowałem się <SyncAltIcon color='success' sx={{ fontSize: 'inherit'}}/></TableCell>
+            <TableCell align="right">Wymeldować się <SyncAltIcon color='error' sx={{ fontSize: 'inherit'}}/></TableCell>
+            <TableCell align="right">Godziny</TableCell>
             
           </TableRow>
         </TableHead>
@@ -40,14 +42,14 @@ export default function BasicTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
                  <TableCell component="th" scope="row">
-                {row.status}
+                {<CircleIcon color={`${row.status ? 'success' : 'error'}`} />}
               </TableCell>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.checkIn}</TableCell>
+              <TableCell align="right">{row.checkOut}</TableCell>
+              <TableCell align="right">{row.hours}</TableCell>
             </TableRow>
           ))}
         </TableBody>

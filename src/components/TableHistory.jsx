@@ -16,24 +16,27 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { Collapse } from '@mui/material';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
-function createData(id, name, calories, fat) {
+function createData(id, name, days, hours) {
     return {
         id,
         name,
-        calories,
-        fat,
+        days,
+        hours,
         history: [
             {
-                date: '2020-01-05',
-                customerId: '11091700',
-                amount: 3,
+                date: '2020-01-06',
+                checkIn: '08 : 00',
+                checkOut: '16 : 00',
+                hours: 8,
             },
             {
-                date: '2020-01-02',
-                customerId: 'Anonymous',
-                amount: 1,
-            },
+                date: '2020-01-05',
+                checkIn: '08 : 00',
+                checkOut: '17 : 00',
+                hours: 9,
+            }, ,
         ],
     };
 }
@@ -93,8 +96,8 @@ function Row(props) {
                 >
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.days}</TableCell>
+                <TableCell align="right">{row.hours}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -107,8 +110,8 @@ function Row(props) {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Data</TableCell>
-                                        <TableCell>Zameldowałem się</TableCell>
-                                        <TableCell align="right">Wymeldować się</TableCell>
+                                        <TableCell align="right">Zameldowałem się <SyncAltIcon color='success' sx={{ fontSize: 'inherit' }} /></TableCell>
+                                        <TableCell align="right">Wymeldować się <SyncAltIcon color='error' sx={{ fontSize: 'inherit' }} /></TableCell>
                                         <TableCell align="right">Ilość godzin</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -118,8 +121,8 @@ function Row(props) {
                                             <TableCell component="th" scope="row">
                                                 {historyRow.date}
                                             </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
+                                            <TableCell align="right">{historyRow.checkIn} <SyncAltIcon color='success' sx={{ fontSize: 'inherit' }} /></TableCell>
+                                            <TableCell align="right">{historyRow.checkOut} <SyncAltIcon color='error' sx={{ fontSize: 'inherit' }} /></TableCell>
                                             <TableCell align="right">
                                                 {Math.round(historyRow.amount * row.price * 100) / 100}
                                             </TableCell>
@@ -275,7 +278,7 @@ export default function TableHistory() {
                 <TablePagination
                     rowsPerPageOptions={[10, 20, 30]}
                     component={Paper}
-                    elevation={0}
+                    elevation={6}
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
                     page={page}

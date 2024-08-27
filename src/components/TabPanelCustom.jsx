@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TableTemp from './TableTemp';
 import TableHistory from './TableHistory';
+import DatePickerCustom from './DatePickerCustom';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -60,6 +61,7 @@ export function TabPanelCustom() {
 
     return (
         <Box sx={{ bgcolor: 'background.paper', width: '90%', margin: '1vh auto', padding: '1vh' }}>
+             <DatePickerCustom />
             <Typography component='h4' variant='h4' textAlign='center' padding={2}>{tabs[value]?.toUpperCase()}</Typography>
             <AppBar position="static">
                 <Tabs
@@ -81,6 +83,7 @@ export function TabPanelCustom() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
+                    
                     <TableTemp />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
