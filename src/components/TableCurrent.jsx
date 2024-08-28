@@ -21,7 +21,7 @@ const rows = [
   createData(false,'Gingerbread', 356, 16.0, 49),
 ];
 
-export default function BasicTable() {
+export default function TableCurrent() {
   return (
     <TableContainer component={Paper} elevation={6}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table" aria-labelledby="tableTitle" stickyHeader>

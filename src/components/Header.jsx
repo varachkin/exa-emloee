@@ -14,13 +14,20 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Logo } from './Logo';
 import { Swicher } from './Swicher';
+import { LanguageSwicher } from './LanguageSwicher';
+import { useNavigate } from 'react-router-dom';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 const pages = [];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 export function Header(props) {
+    const navigate = useNavigate()
+
+    const actions= {
+        Logout: () => navigate('/')
+    }
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,11 +63,13 @@ export function Header(props) {
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            alignItems: 'center',
                         }}
                     >
+                        <LanguageSwicher />
                         <Logo />
                     </Typography>
-                    
+
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -106,6 +115,7 @@ export function Header(props) {
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
+                            alignItems: 'center',
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -114,6 +124,7 @@ export function Header(props) {
                             textDecoration: 'none',
                         }}
                     >
+                        <LanguageSwicher />
                         <Logo />
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -128,8 +139,8 @@ export function Header(props) {
                         ))}
                     </Box>
 
-                    <Box sx={{  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
-                    <Swicher onClick={props.toggleThemeMode} mode={props.mode}/>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+                        <Swicher onClick={props.toggleThemeMode} mode={props.mode} />
 
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -154,7 +165,7 @@ export function Header(props) {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    <Typography textAlign="center" onClick={actions[setting]}>{setting}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

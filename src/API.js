@@ -2,7 +2,8 @@ import axios from "axios";
 
 // const SERVER_ADDRESS = "http://0.0.0.0";
 const SERVER_ADDRESS = "https://auth.vendorobotics.com";
-const SERVER_PORT = 6003;
+const SERVER_IP = "http://192.168.18.141";
+const SERVER_PORT = 5003;
 
 
 export const getRequest = (query) => {
@@ -27,6 +28,18 @@ export const login = (credentials) => {
         'Content-Type': 'application/json'
       }
     })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+
+export const getEmployee = () => {
+  return axios
+    .get(`${SERVER_IP}:${SERVER_PORT}/docs/users/list`)
     .then((response) => {
       return response;
     })

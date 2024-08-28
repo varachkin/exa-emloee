@@ -6,7 +6,6 @@ import { Header } from "../components/Header";
 
 export default function HomePage(props) {
     const { language, themeMode } = useSelector(state => state.actionReducer)
-    console.log(themeMode)
     return (
         <div
             className={`home_page-container`}

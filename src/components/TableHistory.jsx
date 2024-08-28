@@ -79,12 +79,13 @@ function Row(props) {
                 tabIndex={-1}
                 key={row.id}
                 sx={{ cursor: 'pointer' }}
+                onClick={() => setOpen(!open)}
             >
                 <TableCell>
                     <IconButton
                         aria-label="expand row"
                         size="small"
-                        onClick={() => setOpen(!open)}
+                        
                     >
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
@@ -185,7 +186,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-        <TableHead>
+        <TableHead component={Paper} elevation={0}>
             <TableRow>
                 <TableCell />
                 {headCells.map((headCell) => (
@@ -194,6 +195,7 @@ function EnhancedTableHead(props) {
                         align={headCell.numeric ? 'right' : 'left'}
                         padding={'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
+                        sx={{fontWeight: '800'}}
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
@@ -253,6 +255,7 @@ export default function TableHistory() {
                 <TableContainer
                 // component={Paper}
                 // elevation={6}
+                sx={{ maxHeight: 740,}}
                 >
                     <Table
                         stickyHeader
@@ -278,7 +281,7 @@ export default function TableHistory() {
                 <TablePagination
                     rowsPerPageOptions={[10, 20, 30]}
                     component={Paper}
-                    elevation={6}
+                    elevation={0}
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
                     page={page}

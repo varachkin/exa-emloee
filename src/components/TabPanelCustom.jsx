@@ -7,9 +7,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import TableTemp from './TableTemp';
 import TableHistory from './TableHistory';
 import DatePickerCustom from './DatePickerCustom';
+import { CurrentInfo } from './CurrentInfo';
+import { Paper } from '@mui/material';
+import { HistoryInfo } from './HistoryInfo';
+import { EmployeeInfo } from './EmployeeInfo';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -47,9 +50,12 @@ function a11yProps(index) {
 export function TabPanelCustom() {
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-    console.log(value)
 
-    const tabs = ['zameldowanie / wymeldowanie', 'Historia', 'aktualny stan'];
+    const tabcConfig = {
+        tabTitles: []
+    }
+
+    const tabs = ['zameldowanie / wymeldowanie', 'Historia', 'Zarządzaj pracownikiem'];
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -61,8 +67,7 @@ export function TabPanelCustom() {
 
     return (
         <Box sx={{ bgcolor: 'background.paper', width: '90%', margin: '1vh auto', padding: '1vh' }}>
-             <DatePickerCustom />
-            <Typography component='h4' variant='h4' textAlign='center' padding={2}>{tabs[value]?.toUpperCase()}</Typography>
+
             <AppBar position="static">
                 <Tabs
                     value={value}
@@ -73,7 +78,7 @@ export function TabPanelCustom() {
                     aria-label="full width tabs example"
                 >
                     {tabs.map((el, index) => (
-                        <Tab label={el} {...a11yProps(index)} key={el}/>
+                        <Tab label={el} {...a11yProps(index)} key={el} />
                     ))}
                 </Tabs>
             </AppBar>
@@ -81,16 +86,17 @@ export function TabPanelCustom() {
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={value}
                 onChangeIndex={handleChangeIndex}
+                component={Paper}
+                
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    
-                    <TableTemp />
+                    <CurrentInfo title={tabs[0]?.toUpperCase()}/>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                   <TableHistory />
+                   <HistoryInfo title={tabs[1]?.toUpperCase()}/>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    Item Three
+                   <EmployeeInfo title={tabs[2]?.toUpperCase()}/>
                 </TabPanel>
             </SwipeableViews>
         </Box>
